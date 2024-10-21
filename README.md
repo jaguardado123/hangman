@@ -93,24 +93,6 @@ Or in VS Code
 
 
 
-# Widget Tests
-
-We use unit test to test our pure classes, functions etc. and logic but now to test Widget we use Flutter's Test Widget package it work in the same manner as unit tests but provide tools to interact with Widgets 
-like tapping buttons, finding text, entering text, searching the widget tree.
-
-```console
-flutter test test/widget_test.dart
-```
-
-Or in VS Code
-
-1. Open the test/widget_test.dart file
-2. While in the test/widget_test.dart file
-3. Select the Debug menu
-4. Click the Run Without Debuging option
-
-
-
 # Integration Tests
 
 Unit tests and widget tests are handy for testing individual classes, functions, or widgets. While Integration Test test applications as a whole running on a device. It tests UI as well as the flow between screens.
