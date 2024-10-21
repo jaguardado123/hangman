@@ -7,7 +7,7 @@ import 'winscreen.dart';
 class GameScreen extends StatefulWidget {
   final HangmanGame game;
   //This should be modified to take in a HangmanGame
-  const GameScreen(Key? key, this.game) : super(key: key);
+  const GameScreen({Key? key, required this.game}) : super(key: key);
 
   @override
   State<GameScreen> createState() => _GameScreenState();
