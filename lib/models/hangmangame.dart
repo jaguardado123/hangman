@@ -26,14 +26,17 @@ class HangmanGame {
 
   bool guess(String letter) {
     // TODO: Fill this in
+    return true;
   }
 
   String blanksWithCorrectGuesses() {
     // TODO: Fill this in
+    return "";
   }
 
   String status() {
     // TODO: Fill this in
+    return "";
   }
 
   //when running integration tests always return "banana"
