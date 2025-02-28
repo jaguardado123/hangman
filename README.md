@@ -2,8 +2,6 @@
 
 A Hangman Flutter app with unit, widget, and integration tests.
 
-
-
 # HangmanGame Class
 
 It handles the game logic
