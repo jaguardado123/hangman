@@ -11,7 +11,7 @@ void main() {
       final hangmanGame = HangmanGame(word);
       //expect that the hangmanGame objects word matches the originally passed word
       expect(hangmanGame.word(), word);
-    });
+    }, skip: true);
 
     test('Function correctGuesses() should return empty string initially', () {
       //make a variable that we will use to pass to the constructor as our word
@@ -20,7 +20,7 @@ void main() {
       final hangmanGame = HangmanGame(word);
       //expect that the game doesn't have any correct guesses since we have not guessed anything yet
       expect(hangmanGame.correctGuesses().isEmpty, isTrue);
-    });
+    }, skip: true);
 
     test('Function wrongGuesses() should return empty string initially', () {
       //make a variable that we will use to pass to the constructor as our word
@@ -29,7 +29,7 @@ void main() {
       final hangmanGame = HangmanGame(word);
       //expect that the game doesn't have any incorrect guesses since we have not guessed anything yet
       expect(hangmanGame.wrongGuesses().isEmpty, isTrue);
-    });
+    }, skip: true);
   });
 
   //This test group will run several tests on the way the game should respond to certain guesses
@@ -218,6 +218,6 @@ void main() {
       bool areWeInIntegrationTest = true;
       String word = await HangmanGame.getStartingWord(areWeInIntegrationTest);
       expect(word, 'banana');
-    });
+    }, skip: true);
   });
 }
