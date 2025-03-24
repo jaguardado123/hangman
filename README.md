@@ -20,18 +20,18 @@ It handles the game logic
 
 
 
-# HangmanGame Class Unit Test
+# HangmanGame Unit Tests
 
 to run unit test do
 
 ```console
-flutter test test/hangmangame_test.dart
+flutter test test/unit_test.dart
 ```
 
-Or in VS Code
+### In VS Code
 
-1. Open the test/hangmangame_test.dart file
-2. While in the test/hangmangame_test.dart file
+1. Open the test/unit_test.dart file
+2. While in the test/unit_test.dart file
 3. Select the Debug menu
 4. Click the Run Without Debuging option
 
@@ -97,14 +97,19 @@ Or in VS Code
 
 Unit tests and widget tests are handy for testing individual classes, functions, or widgets. While Integration Test test applications as a whole running on a device. It tests UI as well as the flow between screens.
 
-To run the Integration Test you will need a device connected or a simulator running.
-
 Use the following command to run the integration tests
 
+### Run integration test in Codespace
+
 ```console
-flutter drive --target=test_driver/app.dart
+flutter test test/integration_test.dart
 ```
 
+### Run integration test locally
+
+```console
+flutter test integration_test/integration_test.dart
+```
 
 
 ## Overview of integration tests
