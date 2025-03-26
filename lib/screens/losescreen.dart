@@ -7,7 +7,7 @@ import 'gamescreen.dart';
 class LoseScreen extends StatelessWidget {
   late HangmanGame game;
   //This should be modified to take in a HangmanGame
-  LoseScreen({super.key});
+  LoseScreen({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,10 @@ class LoseScreen extends StatelessWidget {
                   HangmanGame game = HangmanGame(word);
 
                   //TODO: Push a GameScreen and give it the HangmanGame
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GameScreen(game: game)));
                 })
           ],
         ),

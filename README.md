@@ -1,6 +1,6 @@
 # Hangman Game
 
-A Hangman Flutter app with unit, widget, and integration tests.
+A Hangman Flutter app with unit and integration tests.
 
 
 

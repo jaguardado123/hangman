@@ -37,6 +37,10 @@ class WinScreen extends StatelessWidget {
                       await HangmanGame.getStartingWord(areWeInIntegrationTest);
                   HangmanGame game = HangmanGame(word);
                   //TODO: Push a GameScreen and give it the HangmanGame
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GameScreen(game: game)));
                 }),
           ],
         ),
