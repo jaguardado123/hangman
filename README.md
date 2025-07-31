@@ -222,7 +222,19 @@ A pull request is when you request to merge the commits from one branch into ano
 
 **Creating a new branch:**
 
-**Pushing a new branch:**
+You can create a new branch and update your GitHub repo all from your terminal. Simply create a new branch, the swith over to it, and lastly push to GitHub. You can use the commands below.
+
+```console
+git branch new_branch
+git checkout new_branch
+git push -u origin new_branch
+```
+
+Before you start making changes and commits, always make sure you are not directly on the master/main branch. You can use the command below to check which branch you're on.
+
+```console
+git branch
+```
 
 **Creating a pull request**, look at your PowerPoint slides for this part.
 
