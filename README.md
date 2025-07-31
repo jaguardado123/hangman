@@ -39,13 +39,13 @@ Using the above user stories, you draft multiple validation sketches and finally
 
 **Validation Sketch:**
 
-<img src="" width="">
+<img src="screenshots/val_sketch.png" width="100%" style="max-width: 1000px">
 
 Messy isn't it? You decide the above validation sketch isn't good enough to serve as your guide, so you quickly draft the low-fidelity prototype below.
 
 **LoFi Prototype:**
 
-<img src="" width="">
+<img src="screenshots/hangman.png" width="100%">
 
 From the low-fidelity prototype you create the following Acceptance Criteria.
 
