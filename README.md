@@ -13,6 +13,8 @@ Before you start writing any code, remember that this is a project and you will 
 - Do NOT merge into the master/main branch without a pull request.
 - Do NOT merge into the master/main branch without a filling out your `pull_request_template.md` file.
 
+<br>
+
 ## Design & Planning
 
 This phase utilizes **Behaviour-Driven Development (BDD)** to determine the application's behaviour and fucntionality from the customer's request. For this phase you do not need to add any material, simply read through it to understand the behaviour of this application.
@@ -68,6 +70,8 @@ From the low-fidelity prototype you create the following Acceptance Criteria.
 - **Given** I am on the Game Screen, **When** I input a special character (ex: '#','%',..) or number **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
 - **Given** I am on the Game Screen, **When** I input a more than one letter or character (ex: "abc", "aa") **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
 - **Given** I am on the Game Screen, **When** I input a previously used letter **And** I click the "Guess Letter" button, **Then** I should see an "already used that letter" message.
+
+<br>
 
 ## Testing
 
@@ -194,11 +198,15 @@ flutter test integration_test/integration_test.dart
 3. Select the Debug menu
 4. Click the Run Without Debuging option
 
+<br>
+
 ## Code Implementation
 
 In this phase is where you start writing code!
 
 However, before you start writing any Dart code, make sure you utilize **Continuous Integration (CI)** when updating your GitHub repository. CI is one of the 2 phases of **DevOps** and it focuses on updating your source code in a way that almost 100% prevents Regression.
+
+<img src="screenshots/devops.PNG" width="350px">
 
 The first step of CI is to setup your **Configuration-as-Code (CaC)**, this step is where you configure your code repository to enforce the CI pipeline.
 
@@ -222,7 +230,7 @@ A pull request is when you request to merge the commits from one branch into ano
 
 Since this project relies on TDD, focus first on passing your tests using the Fail -> Pass -> Refactor lifecycle. Start with your unit tests first and then move on to the integration tests. Remember, start from bottom up, lower-level tests to higher-lever tests.
 
-<img src="" width="300px">
+<img src="screenshots/tdd.PNG" width="300px">
 
 When writing code to pass your tests, make sure to also look at your BDD Acceptance Criteria and Prototypes for guidance if needed.
 
