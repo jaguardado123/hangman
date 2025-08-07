@@ -4,22 +4,20 @@ The purpose of this project is to practice working with Behaviour-Driven Develop
 
 ### Before You Start
 
-Before you start writing any code, remember that this is a project and you will be graded based on your development process and NOT the finished outcome. Make sure to read through this README so you have a good idea of how to complete this project using BDD, TDD, and CI. To avoid losing any points, make sure you follow the rules below.
+Before you start writing any code, remember you will be graded based on your development process and **NOT** the finished outcome. Make sure to read through this README to have a good understanding of how to complete this project. To avoid losing any points, make sure you follow the rules below.
 
 **Rules:**
 
-- Do NOT commit & push directly into the master/main branch.
-- Do NOT merge broken code into the master/main branch. (*You can still commit & push to your other branches*)
-- Do NOT merge into the master/main branch without a pull request.
-- Do NOT merge into the master/main branch without a filling out your `pull_request_template.md` file.
+- Do **NOT** commit & push directly into the master/main branch.
+- Do **NOT** merge broken code into the master/main branch. (*You can still commit & push to your other branches*)
+- Do **NOT** merge into the master/main branch without a pull request.
+- Do **NOT** merge into the master/main branch without filling out your `pull_request_template.md` file.
 
 <br>
 
-## Design & Planning
+## Design & Planning (Validation)
 
-This phase utilizes **Behaviour-Driven Development (BDD)** to determine the application's behaviour and fucntionality from the customer's request. For this phase you do not need to add any material, simply read through it to understand the behaviour of this application.
-
-Assume a customer has reached out to you and has offered you lots of money to build them a Hangman Game mobile app. The following is their pitch.
+This phase utilizes <span style="color: #0096FF">**Behaviour-Driven Development (BDD)**</span> to determine the application's behaviour and fucntionality from the customer's request. For this phase you do not need to add any material, simply read through it to understand the behaviour of this application.
 
 **Customer Request:**
 
@@ -27,7 +25,7 @@ Assume a customer has reached out to you and has offered you lots of money to bu
 
 Upon hearing their request you draft the following user stories.
 
-**User Stories:**
+### User Stories
 
 - As a player, I should see *x* amount of underscores, so that I know how many letters are in the hidden word.
 - As a player, I should be able to input my letter guess, so that I know if it's correct or incorrect.
@@ -35,21 +33,35 @@ Upon hearing their request you draft the following user stories.
 - As a player, I should not be allowed to input previous guesses, numbers, nor special characters, so that I don't lose a wrong guess.
 - As a player, I should see a win or lose screen towards the end, so that I know if I guessed the word and won or used all my wrong guesses and lost.
 
-Using the above user stories, you draft multiple validation sketches and finally the customer agrees with the sketch below.
+Using the above user stories, you draft multiple validation sketches and finally the customer agrees to the sketch below.
 
-**Validation Sketch:**
+### Validation Sketch
 
 <img src="screenshots/val_sketch.png" width="100%" style="max-width: 1000px">
 
 Messy isn't it? You decide the above validation sketch isn't good enough to serve as your guide, so you quickly draft the low-fidelity prototype below.
 
-**LoFi Prototype:**
+### LoFi Prototype
 
 <img src="screenshots/hangman.png" width="100%">
 
-From the low-fidelity prototype you create the following Acceptance Criteria.
+This prototype is much nicer! Use this Figma lofi prototype to serve as your guide for building the application.
 
-**Acceptance Criteria:**
+<br>
+
+## Testing (Verification)
+
+This phase utilizes <span style="color: #0096FF">**Test-Driven-Development (TDD)**</span> where we develop our tests first based on our validation sketch and lofi prototype then afterwards write code to pass those tests and refactor if necessary.
+
+<img src="screenshots/tdd.PNG" width="300px">
+
+From the prototypes in the validation phase above you create the following **Acceptance Criteria** in Gherkin style.
+
+### Acceptance Criteria
+
+<div style="color: #4F7942">
+
+**Happy Paths:**
 
 - **Given** I am on the Main Screen, **When** I click the "New Game" button, **Then** should be taken to the Game Screen.
 
@@ -64,28 +76,28 @@ From the low-fidelity prototype you create the following Acceptance Criteria.
 - **Given** I am on the Game Screen, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is NOT in the hidden word **And** I click the "Guess Letter" button, **Then** I should see the letter amongst my "Wrong Guesses:".
 - **Given** I am on the Game Screen **And** I have used 6 of my wrong guesses, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is NOT in the hidden word **And** I click the "Guess Letter" button, **Then** I should be taken to the Lose Screen.
 - **Given** I am on the Lose Screen, **When** I click the "New Game" button, **Then** should be taken to the Game Screen.
+</div>
 
 <br>
+
+<div style="color: #D22B2B">
+
+**Sad Paths:**
 
 - **Given** I am on the Game Screen, **When** I input a special character (ex: '#','%',..) or number **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
 - **Given** I am on the Game Screen, **When** I input a more than one letter or character (ex: "abc", "aa") **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
 - **Given** I am on the Game Screen, **When** I input a previously used letter **And** I click the "Guess Letter" button, **Then** I should see an "already used that letter" message.
+</div>
 
-<br>
+### Unit Tests
 
-## Testing
+After creating your acceptance criteria, you decide to write your unit tests. **Unit tests** are tests that test individual functions rather than user interaction. You also decide to place all your game calculation functions inside a single dart file rather than having many functions spread throughout multiple dart files.
 
-This phase utilizes **Test-Driven-Development (TDD)** where we develop our tests first, then we develop the code to simply pass those tests, and lastly we refactor our code to resemble Beautiful Code and our lofi prototype. For this phase you do not need to add any material, simply look through the tests and understand what is happening.
+All your game functions will be inside a `HangmanGame` class located in the `lib/models/hangmangame.dart` file.
 
-### HangmanGame Unit Tests
+You create a set of tests in `test\unit_test.dart` to test the following functions.
 
-Unit tests test individual functions rather than user interaction. Rather than having code that checks the player's letter guesses and game status chaotically spread throughout a dart file, let's put that code into neat functions and a class.
-
-We've decided to put our functions inside a `HangmanGame` class located in the `lib/models/hangmangame.dart` file.
-
-In TDD we write our tests before writing our functions. So, we've created tests for functions we know we'll need.
-
-- A `guess()` function, that determines if a letter guess is *accepted* or not by returning `true` or `false` or throwing an `ArgumentError` if the guess is invalid.
+- A `guess()` function, that determines if a letter guess is *accepted* (has not been guessed before) or not by returning `true` or `false` or throws an `ArgumentError` if the guess is invalid.
 - A `status()` function, that determines if the game is ongoing or completed by returning `'play'`, `'win'` or `'lose'`.
 - A `correctGuesses()` function, to help us keep track of our correct guesses by returning them in a string (ex: `'abc'`).
 - A `wrongGuesses()` function, to help us keep track of our incorrect guesses by returning them in a string (ex: `'def'`).
@@ -169,26 +181,16 @@ flutter test test/unit_test.dart
 3. Select the Debug menu
 4. Click the Run Without Debuging option
 
-### Hangman Integration Tests
+### Integration Tests
 
-At a highlevel the integration test works like how a user would interact with the app.
 
-They will make sure our player can go from the Main Screen to the Game Screen and play the game. We know the game logic works because of our unit test now we need to test that the UI shows this interactions as the user plays and tries diffrent cases. The integration test runs various cases like inputting correct, wrong, duplicate, invalid guesses. As well as testing the flow from the Game Screen to Win or Lose Screen.
 
 Use the following command to run the integration tests.
 
 **Terminal:**
 
-If running on your local computer.
-
 ```console
 flutter test test/integration_test.dart
-```
-
-If running in Codespaces.
-
-```console
-flutter test integration_test/integration_test.dart
 ```
 
 **In VS Code:**
@@ -202,9 +204,9 @@ flutter test integration_test/integration_test.dart
 
 ## Code Implementation
 
-In this phase is where you start writing code!
+Now its time for you to start writing code!
 
-However, before you start writing any Dart code, make sure you utilize **Continuous Integration (CI)** when updating your GitHub repository. CI is one of the 2 phases of **DevOps** and it focuses on updating your source code in a way that almost 100% prevents Regression.
+Use <span style="color: #0096FF">**Continuous Integration (CI)**</span> when updating your GitHub repository. CI is one of the 2 phases of **DevOps** and it focuses on updating your source code in a way that almost 100% prevents Regression.
 
 <img src="screenshots/devops.PNG" width="350px">
 
@@ -216,11 +218,7 @@ This step has been partly setup for you. Your current repository already has a `
 
 The only thing that's missing is setting up a **Branch Protection Rule** that instructs GitHub not to allow any changes to the `main/master` branch unless it's through a Pull Request.
 
-### Pull Requests
-
-A pull request is when you request to merge the commits from one branch into another. For this project all of your changes should be done on another branch and NEVER directly on the `main/master` branch.
-
-**Creating a new branch:**
+### Branching
 
 You can create a new branch and update your GitHub repo all from your terminal. Simply create a new branch, the swith over to it, and lastly push to GitHub. You can use the commands below.
 
@@ -230,24 +228,12 @@ git checkout new_branch
 git push -u origin new_branch
 ```
 
-Before you start making changes and commits, always make sure you are not directly on the master/main branch. You can use the command below to check which branch you're on.
+### Pull Requests
 
-```console
-git branch
-```
+A pull request is when you request to merge the commits from one branch into another. For this project all of your changes should be done on another branch and NEVER directly on the `main/master` branch.
 
-**Creating a pull request**, look at your PowerPoint slides for this part.
+Look at your PowerPoint slides for guidance on how to create Pull Requests.
 
 ### Start Your Project!
-
-Since this project relies on TDD, focus first on passing your tests using the Fail -> Pass -> Refactor lifecycle. Start with your unit tests first and then move on to the integration tests. Remember, start from bottom up, lower-level tests to higher-lever tests.
-
-<img src="screenshots/tdd.PNG" width="300px">
-
-When writing code to pass your tests, make sure to also look at your BDD Acceptance Criteria and Prototypes for guidance if needed.
-
-Once you have written code that passes your tests, update your GitHub repository using CI.
-
-
 
 
