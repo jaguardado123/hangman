@@ -19,11 +19,11 @@ void main() {
     // Build the app
     await tester.pumpWidget(const MyApp());
 
-    // Find the new game button.
-    final newGameBtnFinder = find.byKey(Key('new-game-button'));
-
     // We are expecting to find the text 'New Game' in the MainScreen
     expect(find.text("New Game"), findsOneWidget);
+
+    // Find the new game button.
+    final newGameBtnFinder = find.byKey(Key('new-game-button'));
 
     // Next we tap the new game button.
     await tester.tap(newGameBtnFinder);
