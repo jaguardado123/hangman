@@ -163,7 +163,7 @@ You create a set of tests in `test/unit_tests.dart` to test the following functi
     game.guess('q');
     game.guess('w');
 
-    expect(game.correctGuesses(), 'qw') // returns correct guesses
+    expect(game.wrongGuesses(), 'qw') // returns correct guesses
 ```
 
 - A `blanksWithCorrectGuesses()` function, to help us organize our dashes and guessed letters.
