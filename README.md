@@ -8,10 +8,10 @@ Before you start writing any code, remember you will be graded based on your dev
 
 **Rules:**
 
-- Do **NOT** commit & push directly into the master/main branch.
-- Do **NOT** merge broken code into the master/main branch. (*You can still commit & push to your other branches*)
-- Do **NOT** merge into the master/main branch without a pull request.
-- Do **NOT** merge into the master/main branch without filling out your `pull_request_template.md` file.
+- Do **NOT** commit & push directly into the `master` / `main` branch.
+- Do **NOT** merge broken code nor failing tests into the `master` / `main` branch. (*You can still commit & push to your other branches*)
+- Do **NOT** merge into the `master` / `main` branch without a *Pull Request*.
+- Do **NOT** merge into the `master` / `main` branch without a *Code Review*.
 
 <br>
 
@@ -68,29 +68,27 @@ From the prototypes in the validation phase above you create the following **Acc
 
 ### Acceptance Criteria
 
+- For our tests, we'll use `'banana'` as our hidden word.
+
 <div style="color: #4F7942">
 
 ### Happy Paths:
 
 - **Given** I am on the *Main Screen*, **When** I click the 'New Game' button, **Then** should be taken to the *Game Screen*.
 
-<br>
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `'b'` **And** I click the 'Guess Letter' button, **Then** I should see `'b-----'`.
 
-- For our tests, we'll use `banana` as our hidden word.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `'b'`, **When** I input `'n'` **And** I click the 'Guess Letter' button, **Then** I should see `'b-n-n-'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `b` **And** I click the 'Guess Letter' button, **Then** I should see `b-----`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `['b', 'n']`, **When** I input `'z'` **And** I click the 'Guess Letter' button, **Then** I should see `'Wrong Guesses: z'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b`, **When** I input `n` **And** I click the 'Guess Letter' button, **Then** I should see `b-n-n-`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `['b', 'n']`, **When** I input `'a'` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Win Screen* **And** see `'You Win'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b-n-n-`, **When** I input `z` **And** I click the 'Guess Letter' button, **Then** I should see `Wrong Guesses: z`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `['q', 'w', 'e', 'r', 't', 'y']`, **When** I input `'u'` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Lose Screen* **And** see `'You Lose'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b-n-n-`, **When** I input `a` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Win Screen* **And** see `You Win`.
+- **Given** I have started the game **And** I have won the game by guessing `['b', 'n', 'a']` **And** I am on the *Win Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `[q, w, e, r, t, y]`, **When** I input `u` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Lose Screen* **And** see `You Lose`.
-
-- **Given** I have started the game **And** I have won the game by guessing `banana` **And** I am on the *Win Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
-
-- **Given** I have started the game **And** I have lost the game by guessing `[q, w, e, r, t, y, u]` **And** I am on the *Lose Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
+- **Given** I have started the game **And** I have lost the game by guessing `['q', 'w', 'e', 'r', 't', 'y', 'u']` **And** I am on the *Lose Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
 </div>
 
 <br>
@@ -99,13 +97,13 @@ From the prototypes in the validation phase above you create the following **Acc
 
 ### Sad Paths:
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b`, **When** I input `b` **And** I click the 'Guess Letter' button, **Then** I should see `already used that letter`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `'b'`, **When** I input `'b'` **And** I click the 'Guess Letter' button, **Then** I should see `'already used that letter'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `q`, **When** I input `q` **And** I click the 'Guess Letter' button, **Then** I should see `already used that letter`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `'q'`, **When** I input `'q'` **And** I click the 'Guess Letter' button, **Then** I should see `'already used that letter'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `@` **And** I click the 'Guess Letter' button, **Then** I should see `invalid`.
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `'@'` **And** I click the 'Guess Letter' button, **Then** I should see `'invalid'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `ab` **And** I click the 'Guess Letter' button, **Then** I should see `invalid`.
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `'ab'` **And** I click the 'Guess Letter' button, **Then** I should see `'invalid'`.
 
 </div>
 
@@ -117,7 +115,7 @@ All your game functions will be inside a `HangmanGame` class located in the `lib
 
 You create a set of tests in `test/unit_tests.dart` to test the following functions.
 
-- A `guess()` function, that determines if a letter guess is *accepted* (has not been guessed before) or not by returning `true` or `false` or throws an `ArgumentError` if the guess is invalid.
+- A `guess()` function, that determines if a letter guess is *accepted* or *rejected* as a valid guess by returning `true` or `false` respectively. For any *invalid* guesses it will throw an `ArgumentError`.
 
 ```dart
     // pass in the secret word
@@ -217,7 +215,7 @@ flutter test test/integration_tests.dart
 
 Now its time for you to start writing code!
 
-Use <span style="color: #0096FF">**Continuous Integration (CI)**</span> when updating your GitHub repository. CI is one of the 2 phases of **DevOps** and it focuses on updating your source code in a way that almost 100% prevents Regression.
+Use <span style="color: #0096FF">**Continuous Integration (CI)**</span> when updating your GitHub repository. CI is one of the 2 phases of **DevOps** and it focuses on updating your source code to prevent Regression.
 
 <img src="screenshots/devops.PNG" width="350px">
 
@@ -225,9 +223,17 @@ The first step of CI is to setup your **Configuration-as-Code (CaC)**, this step
 
 ### Configuration-as-Code
 
-This step has been partly setup for you. Your current repository already has a `.github/workflows/flutter_test.yaml` file that forces GitHub to run all of your tests when a Pull Request is made, and a `pull_request_template.md` file where you can put a description of your Pull Request.
+**1. Require Testing:**
 
-The only thing that's missing is setting up a **Branch Protection Rule** that instructs GitHub not to allow any changes to the `main/master` branch unless it's through a Pull Request.
+- Your current repository already has a `.github/workflows/flutter_test.yaml` file that tells GitHub Actions to run all of the tests when a Pull Request is made.
+
+**2. Require Code Review:**
+
+- Your current repository also has a `pull_request_template.md` file where you and your team must put a description of your Pull Request. (*This is done in GitHub, NOT directly on the file*)
+
+**3. Don't Allow Bypassing Items 1 and 2:**
+
+- Next, set up a **Branch Protection Rule** that instructs GitHub not to allow any changes to the `main` / `master` branch unless it's through a Pull Request, there's no failing tests, and there's a code review.
 
 ### Branching
 
@@ -241,8 +247,12 @@ git push -u origin new_branch
 
 ### Pull Requests
 
-A pull request is when you request to merge the commits from one branch into another. For this project all of your changes should be done on another branch and NEVER directly on the `main/master` branch.
+A pull request is when you request to merge the commits from one branch into another. For this project all of your changes should be done on another branch and NEVER directly on the `main` / `master` branch.
 
 Look at your PowerPoint slides for guidance on how to create Pull Requests.
+
+### Code Review
+
+Your code must be reviewed and given feedback by a team member before it is merged into the `main` \ `master` branch. Look at your PowerPoint slides for guidance on how to *Review* and *Approve* Pull Requests.
 
 ### Start Your Project!
