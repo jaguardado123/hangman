@@ -1,6 +1,6 @@
 # Hangman Game Project
 
-The purpose of this project is to practice working with Behaviour-Driven Development (BDD), Test-Driven Development (TDD) and Continuous Integration (CI).
+The purpose of this project is to practice working with Behavior-Driven Design (BDD), Test-Driven Development (TDD) and Continuous Integration (CI).
 
 ### Before You Start
 
@@ -17,9 +17,9 @@ Before you start writing any code, remember you will be graded based on your dev
 
 ## Design & Planning (Validation)
 
-This phase utilizes <span style="color: #0096FF">**Behaviour-Driven Development (BDD)**</span> to determine the application's behaviour and fucntionality from the customer's request. For this phase you do not need to add any material, simply read through it to understand the behaviour of this application.
+This phase utilizes <span style="color: #0096FF">**Behavior-Driven Design (BDD)**</span> to determine the application's behavior and fucntionality from the customer's request. For this phase you do not need to add any material, simply read through it to understand the behavior of this application.
 
-**Customer Request:**
+### Customer Request:
 
 *"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"*
 
@@ -70,32 +70,43 @@ From the prototypes in the validation phase above you create the following **Acc
 
 <div style="color: #4F7942">
 
-**Happy Paths:**
+### Happy Paths:
 
-- **Given** I am on the Main Screen, **When** I click the "New Game" button, **Then** should be taken to the Game Screen.
-
-<br>
-
-- **Given** I am on the Game Screen, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is in the hidden word **And** I click the "Guess Letter" button, **Then** I should see the letter within the underscores.
-- **Given** I am on the Game Screen **And** I have guessed all letters but one, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is in the hidden word **And** I click the "Guess Letter" button, **Then** I should be taken to the Win Screen.
-- **Given** I am on the Win Screen, **When** I click the "New Game" button, **Then** I should be taken to the Game Screen.
+- **Given** I am on the *Main Screen*, **When** I click the 'New Game' button, **Then** should be taken to the *Game Screen*.
 
 <br>
 
-- **Given** I am on the Game Screen, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is NOT in the hidden word **And** I click the "Guess Letter" button, **Then** I should see the letter amongst my "Wrong Guesses:".
-- **Given** I am on the Game Screen **And** I have used 6 of my wrong guesses, **When** I input a single letter ('a'-'z', 'A'-'Z') **And** the letter is NOT in the hidden word **And** I click the "Guess Letter" button, **Then** I should be taken to the Lose Screen.
-- **Given** I am on the Lose Screen, **When** I click the "New Game" button, **Then** I should be taken to the Game Screen.
+- For our tests, we'll use `banana` as our hidden word.
+
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `b` **And** I click the 'Guess Letter' button, **Then** I should see `b-----`.
+
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b`, **When** I input `n` **And** I click the 'Guess Letter' button, **Then** I should see `b-n-n-`.
+
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b-n-n-`, **When** I input `z` **And** I click the 'Guess Letter' button, **Then** I should see `Wrong Guesses: z`.
+
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b-n-n-`, **When** I input `a` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Win Screen* **And** see `You Win`.
+
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `[q, w, e, r, t, y]`, **When** I input `u` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Lose Screen* **And** see `You Lose`.
+
+- **Given** I have started the game **And** I have won the game by guessing `banana` **And** I am on the *Win Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
+
+- **Given** I have started the game **And** I have lost the game by guessing `[q, w, e, r, t, y, u]` **And** I am on the *Lose Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
 </div>
 
 <br>
 
 <div style="color: #D22B2B">
 
-**Sad Paths:**
+### Sad Paths:
 
-- **Given** I am on the Game Screen, **When** I input a special character (ex: '#','%',..) or number **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
-- **Given** I am on the Game Screen, **When** I input a more than one letter or character (ex: "abc", "aa") **And** I click the "Guess Letter" button, **Then** I should see an "invalid" message.
-- **Given** I am on the Game Screen, **When** I input a previously used letter **And** I click the "Guess Letter" button, **Then** I should see an "already used that letter" message.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `b`, **When** I input `b` **And** I click the 'Guess Letter' button, **Then** I should see `already used that letter`.
+
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `q`, **When** I input `q` **And** I click the 'Guess Letter' button, **Then** I should see `already used that letter`.
+
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `@` **And** I click the 'Guess Letter' button, **Then** I should see `invalid`.
+
+- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `ab` **And** I click the 'Guess Letter' button, **Then** I should see `invalid`.
+
 </div>
 
 ### Unit Tests
@@ -107,96 +118,88 @@ All your game functions will be inside a `HangmanGame` class located in the `lib
 You create a set of tests in `test/unit_tests.dart` to test the following functions.
 
 - A `guess()` function, that determines if a letter guess is *accepted* (has not been guessed before) or not by returning `true` or `false` or throws an `ArgumentError` if the guess is invalid.
-- A `status()` function, that determines if the game is ongoing or completed by returning `'play'`, `'win'` or `'lose'`.
-- A `correctGuesses()` function, to help us keep track of our correct guesses by returning them in a string (ex: `'abc'`).
-- A `wrongGuesses()` function, to help us keep track of our incorrect guesses by returning them in a string (ex: `'def'`).
-- A `blanksWithCorrectGuesses()` function, to help us organize our dashes and guessed letters.
-- A `word()` function, to return the hidden word.
-
-**Examples:**
-
-Guessing a single correct letter from our hidden word.
 
 ```dart
     // pass in the secret word
     var game = HangmanGame('banana');
 
-    bool wasAbleToMakeGuess = game.guess('b'); // returns true
-    print(game.blanksWithCorrectGuesses()) // returns 'b-----'
-    print(game.status()) //returns 'play' 
+    expect(game.guess('b'), true); // 'b' is accepted
+    expect(game.guess('q'), true); // 'q' is accepted
+
+    expect(game.guess('b'), false); // 'b' not accepted, already used
+    expect(game.guess('q'), false); // 'q' not accepted, already used
+
+    expect(() => game.guess('%'), throwsArumentError); // throws argument error
 ```
 
-Guessing a single correct letter that appears multiple times in our hidden word.
+- A `status()` function, that determines if the game is ongoing or completed by returning `'play'`, `'win'` or `'lose'`.
 
 ```dart
     var game = HangmanGame('banana');
 
-    print(game.blanksWithCorrectGuesses()) // returns '------'
+    expect(game.status(), 'play'); // should return 'play'
 
-    game.guess('b'); // returns true
-    game.guess('n'); // returns true
-
-    print(game.blanksWithCorrectGuesses()) // returns 'b-n-n-'
-    print(game.correctGuesses()) // returns 'bn'
-```
-
-Guessing all the correct letters in our hidden word and winning the game.
-
-```dart
-    var game = HangmanGame('car');
-
-    print(game.status()) // returns 'play'
-
-    // returns true
-    game.guess('c');
+    game.guess('b');
+    game.guess('n');
     game.guess('a');
-    game.guess('r');
 
-    print(game.correctGuesses()) // returns 'car'
-    print(game.wrongGuesses()) // returns ''
-    print(game.status()) // returns 'win'
+    expect(game.status(), 'win'); // should return 'win'
 ```
 
-Guessing a wrong letter, guessing the same letter multiple times, and guessing an invalid letter.
+- A `correctGuesses()` function, to help us keep track of our correct guesses by returning them in a string (ex: `'abc'`).
 
 ```dart
-    var game = HangmanGame('car');
+    var game = HangmanGame('banana');
 
-    game.guess('car'); // trhows ArgumentError
-    game.guess('%'); // trhows ArgumentError
+    game.guess('b');
+    game.guess('n');
 
-    game.guess('z'); // returns true
-
-    game.guess('a'); // returns true
-    game.guess('a'); // returns false 
-
-    print(game.correctGuesses()) // returns 'a'
-    print(game.wrongGuesses()) // returns 'z'
-    print(game.status()) // returns 'play'
+    expect(game.correctGuesses(), 'bn') // returns correct guesses
 ```
 
-Use the following command to run the unit tests.
+- A `wrongGuesses()` function, to help us keep track of our incorrect guesses by returning them in a string (ex: `'def'`).
+
+```dart
+    var game = HangmanGame('banana');
+
+    game.guess('q');
+    game.guess('w');
+
+    expect(game.correctGuesses(), 'qw') // returns correct guesses
+```
+
+- A `blanksWithCorrectGuesses()` function, to help us organize our dashes and guessed letters.
+
+```dart
+    var game = HangmanGame('banana');
+
+    game.guess('b');
+    game.guess('n');
+
+    expect(game.blanksWithCorrectGuesses(), 'b-n-n-'); // returns the word with dashes
+```
+
+- A `word()` function, to return the hidden word.
+
+```dart
+    var game = HangmanGame('banana');
+
+    expect(game.word(), 'banana'); // returns the hidden word
+```
+
+### Run the Tests
+
+You can run your tests using the terminal or by using VS Code's UI.
 
 **Terminal:**
+
+Unit tests:
 
 ```console
 flutter test test/unit_tests.dart
 ```
 
-**In VS Code:**
-
-1. Open the test/unit_tests.dart file
-2. While in the test/unit_tests.dart file
-3. Select the Debug menu
-4. Click the Run Without Debuging option
-
-### Integration Tests
-
-
-
-Use the following command to run the integration tests.
-
-**Terminal:**
+Integration tests:
 
 ```console
 flutter test test/integration_tests.dart
@@ -204,10 +207,9 @@ flutter test test/integration_tests.dart
 
 **In VS Code:**
 
-1. Open the test/integration_tests.dart file
-2. While in the test/integration_tests.dart file
-3. Select the Debug menu
-4. Click the Run Without Debuging option
+1. Open the `test/unit_tests.dart` or `test/integration_tests.dart` file
+2. While in the test file select the Debug menu
+3. Click the Run Without Debuging option
 
 <br>
 
