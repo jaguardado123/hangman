@@ -21,9 +21,7 @@ This phase utilizes <span style="color: #0096FF">**Behavior-Driven Design (BDD)*
 
 ### Customer Request:
 
-```
-"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"
-```
+`"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"`
 
 Upon hearing their request you draft the following user stories.
 
@@ -74,7 +72,7 @@ From the prototypes in the validation phase above you create the following **Acc
 
 <div style="color: #4F7942">
 
-### Happy Paths:
+<ins>**Happy Paths:**</ins>
 
 - **Given** I am on the *Main Screen*, **When** I click the 'New Game' button, **Then** should be taken to the *Game Screen* **And** see `'Guess Letter'`.
 
@@ -97,7 +95,7 @@ From the prototypes in the validation phase above you create the following **Acc
 
 <div style="color: #D22B2B">
 
-### Sad Paths:
+<ins>**Sad Paths:**</ins>
 
 - **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `'b'`, **When** I input `'b'` **And** I click the 'Guess Letter' button, **Then** I should see `'already used that letter'`.
 
