@@ -21,7 +21,7 @@ This phase utilizes <span style="color: #0096FF">**Behavior-Driven Design (BDD)*
 
 ### Customer Request:
 
-`"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"`
+`"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of dashes so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"`
 
 Upon hearing their request you draft the following user stories.
 
