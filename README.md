@@ -21,25 +21,27 @@ This phase utilizes <span style="color: #0096FF">**Behavior-Driven Design (BDD)*
 
 ### Customer Request:
 
-*"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"*
+```
+"I want a mobile app for users to play the classic hangman game. The game should show the user x amount of underscores so they know the length of the word. The user should only be allowed 7 wrong guesses for pole, head, body, arms (x2), and legs(x2) and they should be shown their wrong guesses. If they guess all the right letters before the complete figure is drawn, they win!"
+```
 
 Upon hearing their request you draft the following user stories.
 
 ### User Stories
 
-- As a player, I should see a row of dashes equal to the hidden word’s length, so that I know how many letters to guess.
+- **As a** game-player, **I should** see a row of dashes equal to the hidden word’s length, **so that** I know how many letters to guess.
 
-- As a player, I should be able to input a single letter, so that I can progress the game and reveal the hidden word.
+- **As a** game-player, **I should** be able to input a single letter, **so that** I can progress the game and reveal the hidden word.
 
-- As a player, I should see a list of my incorrect guesses, so that I can avoid repeating the same letter.
+- **As a** game-player, **I should** see a list of my incorrect guesses, **so that** I can avoid repeating the same letter.
 
-- As a player, I should not be allowed to input numbers, special characters, nor previous guesses, so that I don't lose a turn.
+- **As a** game-player, **I should** not be allowed to input numbers, special characters, nor previous guesses, **so that** I don't lose a turn.
 
-- As a player, I should be taken to a lose screen where the hidden word revealed after 7 wrong guesses, so that I know I have lost the game.
+- **As a** game-player, **I should** be taken to a lose screen where the hidden word revealed after 7 wrong guesses, **so that** I know I have lost the game.
 
-- As a player, I should be taken to a win screen after correctly guessing the hidden word, so that I know I have won the game.
+- **As a** game-player, **I should** be taken to a win screen after correctly guessing the hidden word, **so that** I know I have won the game.
 
-- As a player, I should have the option to start a new game after being taken to a win or lose screen, so that I can play again.
+- **As a** game-player, **I should** have the option to start a new game after being taken to a win or lose screen, **so that** I can play again.
 
 
 Using the above user stories, you draft multiple validation sketches and finally the customer agrees to the sketch below.
@@ -74,9 +76,9 @@ From the prototypes in the validation phase above you create the following **Acc
 
 ### Happy Paths:
 
-- **Given** I am on the *Main Screen*, **When** I click the 'New Game' button, **Then** should be taken to the *Game Screen*.
+- **Given** I am on the *Main Screen*, **When** I click the 'New Game' button, **Then** should be taken to the *Game Screen* **And** see `'Guess Letter'`.
 
-- **Given** I have started the game **And** I am on the *Game Screen*, **When** I input `'b'` **And** I click the 'Guess Letter' button, **Then** I should see `'b-----'`.
+- **Given** I have started the game **And** I am on the *Game Screen* **And** I see `'------'`, **When** I input `'b'` **And** I click the 'Guess Letter' button, **Then** I should see `'b-----'`.
 
 - **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `'b'`, **When** I input `'n'` **And** I click the 'Guess Letter' button, **Then** I should see `'b-n-n-'`.
 
@@ -84,11 +86,11 @@ From the prototypes in the validation phase above you create the following **Acc
 
 - **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `['b', 'n']`, **When** I input `'a'` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Win Screen* **And** see `'You Win'`.
 
+- **Given** I have started the game **And** I have won the game by guessing `['b', 'n', 'a']` **And** I am on the *Win Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen* **And** see `'Guess Letter'`.
+
 - **Given** I have started the game **And** I am on the *Game Screen* **And** I have previously guessed `['q', 'w', 'e', 'r', 't', 'y']`, **When** I input `'u'` **And** I click the 'Guess Letter' button, **Then** I should be taken to the *Lose Screen* **And** see `'You Lose'`.
 
-- **Given** I have started the game **And** I have won the game by guessing `['b', 'n', 'a']` **And** I am on the *Win Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
-
-- **Given** I have started the game **And** I have lost the game by guessing `['q', 'w', 'e', 'r', 't', 'y', 'u']` **And** I am on the *Lose Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen*.
+- **Given** I have started the game **And** I have lost the game by guessing `['q', 'w', 'e', 'r', 't', 'y', 'u']` **And** I am on the *Lose Screen*, **When** I click the 'New Game' button, **Then** I should be taken back to the *Game Screen* **And** see `'Guess Letter'`.
 </div>
 
 <br>
@@ -233,7 +235,7 @@ The first step of CI is to setup your **Configuration-as-Code (CaC)**, this step
 
 **3. Don't Allow Bypassing Items 1 and 2:**
 
-- Next, set up a **Branch Protection Rule** that instructs GitHub not to allow any changes to the `main` / `master` branch unless it's through a Pull Request, there's no failing tests, and there's a code review.
+- Next, set up a **Branch Protection Rule** that instructs GitHub not to allow any changes to the `main` / `master` branch unless it's through a Pull Request, there's no failing tests, and there's a *Code Review*.
 
 ### Branching
 

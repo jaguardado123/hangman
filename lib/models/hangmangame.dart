@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
 
 class HangmanGame {
   String _word = "";
@@ -42,14 +43,19 @@ class HangmanGame {
   // When running integration tests always return "banana".
   static Future<String> getStartingWord(bool areWeInIntegrationTest) async {
     String word;
-    final Uri endpoint = Uri.parse("http://randomword.saasbook.info/RandomWord");
     if (areWeInIntegrationTest) {
       word = "banana";
     } else {
+      // If not an integration test, fetch a random word from API
       try {
-        final response = await http.post(endpoint);
-        word = response.body;
+        final response = await http.get(
+          Uri.parse("https://randomword.saasbook.info/RandomWord"),
+          headers: {'Accept': 'text/plain'},
+        );
+        final doc = parser.parse(response.body);
+        word = doc.body?.text ?? '';
       } catch (e) {
+        // Return "error" if API fetch fails
         word = "error";
       }
     }
